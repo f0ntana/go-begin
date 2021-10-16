@@ -46,9 +46,6 @@ func (h *Handler) SetupRoutes() {
 }
 
 func (h *Handler) GetComment(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
-
 	vars := mux.Vars(r)
 	id := vars["id"]
 
@@ -70,9 +67,6 @@ func (h *Handler) GetComment(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) GetAllComment(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
-
 	comments, err := h.Service.GetAllComments()
 	if err != nil {
 		sendErrorResponse(w, "Failed comments all", err)
@@ -85,9 +79,6 @@ func (h *Handler) GetAllComment(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) PostComment(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
-
 	var comment comment.Comment
 	if err := json.NewDecoder(r.Body).Decode(&comment); err != nil {
 		sendErrorResponse(w, "Failed decode json", err)
@@ -107,9 +98,6 @@ func (h *Handler) PostComment(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) UpdateComment(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
-
 	vars := mux.Vars(r)
 	id := vars["id"]
 
